@@ -1,0 +1,1 @@
+a sample demo which user cordovacapture
