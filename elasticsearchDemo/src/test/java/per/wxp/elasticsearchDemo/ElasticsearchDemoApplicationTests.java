@@ -11,6 +11,8 @@ public class ElasticsearchDemoApplicationTests {
 
 	@Test
 	public void contextLoads() {
+
+
 	}
 
 }
