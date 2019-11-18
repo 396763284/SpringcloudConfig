@@ -38,8 +38,7 @@ const user = {
       return new Promise((resolve, reject) => {
         login(usercode, userInfo.password).then(data => {
             setToken(data.access_token)
-            commit('setUserCode',usercode);
-            console.log("login："+usercode)
+            commit('setUserCode',usercode)
           resolve()
         }).catch(error => {
           reject(error)
@@ -50,12 +49,10 @@ const user = {
     // 获取用户信息
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
-        console.log("GetInfo")
         let query ={
           user_code:state.user_code
         }
         getInfo(query).then(response => {
-          console.log("user.out")
           initData(response.data.perms_info)
           resolve(response)
         }).catch(error => {
@@ -74,14 +71,6 @@ const user = {
         }).catch(error => {
           reject(error)
         })
-      })
-    },
-
-    // 前端 登出
-    FedLogOut({ commit }) {
-      return new Promise(resolve => {
-        removeToken()
-        resolve()
       })
     }
   }

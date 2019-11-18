@@ -35,18 +35,24 @@
             max-height="500">
             <el-table-column
                 label="用户 ID"
-                prop="id"
+                prop="user_id"
                 fixed>
             </el-table-column>
             <el-table-column
                 label="用户名"
-                prop="username"
+                prop="user_name"
                 fixed>
             </el-table-column>
             <el-table-column
                 label="状态">
                 <template slot-scope="scope">
-                    <el-tag :type="scope.row.status | statusFilterType">{{scope.row.status | statusFilterName}}</el-tag>
+                  <el-tag :type="scope.row.state | statusFilterType">{{scope.row.state | statusFilterName}}</el-tag>
+                </template>
+            </el-table-column>
+             <el-table-column
+                label="手机号码">
+                <template slot-scope="scope">
+                    <span>{{ scope.row.moble_tel }}</span>
                 </template>
             </el-table-column>
             <el-table-column
@@ -55,15 +61,10 @@
                 :show-overflow-tooltip="true">
                 <template slot-scope="scope">
                     <i class="el-icon-time"></i>
-                    <span>{{ scope.row.last_login_time }}</span>
+                    <span>{{ scope.row.create_time }}</span>
                 </template>
             </el-table-column>
-            <el-table-column
-                label="登录IP">
-                <template slot-scope="scope">
-                    <span>{{ scope.row.last_login_ip }}</span>
-                </template>
-            </el-table-column>
+           
             <el-table-column
                 label="操作"
                 fixed="right">
@@ -135,12 +136,12 @@ import {
 
 
 const formJson = {
-    id: "",
+    user_id: "",
     password: "",
-    username: "",
-    checkPassword: "",
-    status: 1,
-    roles: []
+    user_name: "",
+    create_time:"",
+    moble_tel:"",
+    state: 1000
 };
 export default {
     data() {
@@ -243,14 +244,14 @@ export default {
             userList(this.query)
                 .then(response => {
                     this.loading = false;
-                    this.list = response.data.list || [];
-                    this.total = response.data.total || 0;
+                    console.log(response.data)
+                    this.list = response.data.pages.data || [];
+                    this.total = response.data.pages.totalCount || 0;
                 })
                 .catch(() => {
                     this.loading = false;
                     this.list = [];
                     this.total = 0;
-                    this.roles = [];
                 });
         },
         getRoleList() {
@@ -353,33 +354,25 @@ export default {
         }
     },
     filters: {
-        statusFilterType(status) {
+        statusFilterType(state) {
             const statusMap = {
-                0: "gray",
-                1: "success",
-                2: "danger"
+                '1300': "gray",
+                '1000': "success"
             };
-            return statusMap[status];
+            return statusMap[state];
         },
         statusFilterName(status) {
             const statusMap = {
-                0: "禁用",
-                1: "正常",
-                2: "未验证"
+                '1300': "禁用",
+                '1000': "正常"
             };
             return statusMap[status];
         }
     },
     mounted() {},
     created() {
-        // 将参数拷贝进查询对象
-        let query = this.$route.query;
-        this.query = Object.assign(this.query, query);
-        this.query.limit = parseInt(this.query.limit);
         // 加载表格数据
         this.getList();
-        // 加载角色列表
-        this.getRoleList();
     }
 };
 </script>

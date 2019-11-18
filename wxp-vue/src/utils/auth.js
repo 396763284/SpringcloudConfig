@@ -21,20 +21,28 @@ export function removeToken() {
 }
 
 
+// 保存角色下所有属性 -- 因为动态路由无法保存object每次刷新页面，需要重新生成 nav_tree
+export function setMenusInfo(menus){
+  storage.setStorage("menus_info",menus)
+  return 
+}
+
+// 获取角色下所有属性
+export function getMenusInfo(){
+  return storage.getStorage("menus_info")
+}
 
 // 系统登录初始化时，整理数据并保存到localstoage
 export function initData(arr){
   var pers=arr.perms
   var menus=arr.menus
   createDynamic(menus)
+  setMenusInfo(menus)
 }
 
 
-function createDynamic(menus){
-  console.log("menus")
-  console.log(menus)
+export function createDynamic(menus){
   var dynamic =baseRouters.concat(buildTree(menus))
-  console.log(dynamic)
   router.addRoutes(dynamic)
   store.commit('setNavTree',dynamic)
 }

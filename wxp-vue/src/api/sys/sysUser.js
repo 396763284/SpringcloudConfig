@@ -4,7 +4,7 @@ import axios from '@/utils/axios'
 // 获取用户列表
 export function userList(data) {
     return axios({
-        url: '/users',
+        url: '/user/userList',
         method: 'post',
         data: data
     })
@@ -12,9 +12,9 @@ export function userList(data) {
 // 获取角色列表
 export function userRoleList(data) {
     return axios({
-        url: '/users',
+        url: '/user/userRoleList',
         method: 'post',
-        params: data
+        data: data
     })
 }
 

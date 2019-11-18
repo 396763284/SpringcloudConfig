@@ -33,9 +33,7 @@ axios.interceptors.response.use(
         * code为非20000是抛错 可结合自己业务进行修改
         */
         const res = response.data
-        console.log(response.result)
-        console.log("-----------------")
-        console.log(response.data)
+      
         // if(res.code==1){
         //     return res.data
         // }else{
