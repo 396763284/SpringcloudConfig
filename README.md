@@ -1,1 +1,1 @@
-a sample demo which user cordovacapture
+some  old and config test things 
