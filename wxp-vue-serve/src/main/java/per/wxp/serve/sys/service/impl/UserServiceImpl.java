@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
         List<Map<String ,Object>> list= userMapper.getUserList(map);
         int total= userMapper.getuserTotal(map);
         page.setData(list);
-        page.setTotalCount(total);
+        page.setTotal(total);
         return page;
     }
 

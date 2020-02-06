@@ -58,4 +58,7 @@ public interface PermissionService {
      */
     int freezePermission(Map<String, Object> map);
 
+    PageResult getPermsPage(Map<String, Object> map);
+
+
 }

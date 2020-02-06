@@ -24,6 +24,16 @@ public class BaseController {
         return SvcCont;
     }
 
+    protected Map<String,Object> getParams(Map<String,Object> map){
+
+        Map<String,Object> dataMap= (Map<String, Object>) map.get(Constant.DATA_INFO);
+
+
+        // 验证服务是否注册REQUEST_INFO
+//        Map<String,Object> REQUEST_INFO=(Map<String, Object>) SvcCont.get(Constant.REQUEST_INFO);
+
+        return dataMap;
+    }
 
     protected Map<String,Object> getRequestInfo(Map<String,Object> map){
 

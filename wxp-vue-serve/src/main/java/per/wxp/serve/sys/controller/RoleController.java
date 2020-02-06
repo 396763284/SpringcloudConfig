@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import per.wxp.serve.common.base.BaseController;
 import per.wxp.serve.common.model.PageResult;
+import per.wxp.serve.common.model.ResultMsg;
+import per.wxp.serve.common.utils.ResultUtil;
 import per.wxp.serve.sys.service.RoleService;
 
 import java.util.HashMap;
@@ -33,28 +35,66 @@ public class RoleController extends BaseController {
 
     @ApiOperation(value = "角色分页数据", notes = "角色列表 ")
     @ApiImplicitParam(name = "params", value = "xxx", required = true, dataType = "Map")
-    @PostMapping("/roleList")
-    public Map<String,Object> getUserList(@RequestBody Map<String, Object> params) {
-        Map<String,Object> SvcCont = this.getRequestBody(params);
+    @PostMapping("/rolePage")
+    public ResultMsg getRolePage (@RequestBody Map<String, Object> params) {
+        Map<String,Object> queryMap = this.getParams(params);
         Map<String,Object> map =new HashMap<String,Object>();
-        List<Map<String,Object>> list= roleService.getRoleList(params);
-        map.put("list",list);
-        return this.getResponeseMap(SvcCont,true,map);
+        PageResult pages =roleService.getRolePage(queryMap);
+        map.put("pages",pages);
+        return ResultUtil.success(map);
     }
 
     @ApiOperation(value = "角色列表", notes = "角色列表 ")
     @ApiImplicitParam(name = "params", value = "xxx", required = true, dataType = "Map")
-    @PostMapping("/rolePage")
-    public Map<String,Object> getRolePage(@RequestBody Map<String, Object> params) {
-        Map<String,Object> SvcCont = this.getRequestBody(params);
+    @PostMapping("/roleList")
+    public ResultMsg getRoleList(@RequestBody Map<String, Object> params) {
+        Map<String,Object> queryMap = this.getParams(params);
         Map<String,Object> map =new HashMap<String,Object>();
-        PageResult pages =roleService.getRolePage(params);
-        map.put("pages",pages);
-        return this.getResponeseMap(SvcCont,true,map);
+        List<Map<String,Object>> list = roleService.getRoleList(queryMap);
+        map.put("list",list);
+        return ResultUtil.success(map);
     }
 
 
+    @ApiOperation(value = "角色列表", notes = "角色列表 ")
+    @ApiImplicitParam(name = "params", value = "xxx", required = true, dataType = "Map")
+    @PostMapping("/addRole")
+    public ResultMsg addRole(@RequestBody Map<String, Object> params) {
+        Map<String,Object> dataMap = this.getParams(params);
+        Map<String,Object> map =new HashMap<String,Object>();
+        roleService.insertRole(dataMap);
+        return  ResultUtil.success(map);
+    }
 
+    @ApiOperation(value = "角色列表", notes = "角色列表 ")
+    @ApiImplicitParam(name = "params", value = "xxx", required = true, dataType = "Map")
+    @PostMapping("/updateRole")
+    public ResultMsg updateRole(@RequestBody Map<String, Object> params) {
+        Map<String,Object> dataMap = this.getParams(params);
+        Map<String,Object> map =new HashMap<String,Object>();
+        roleService.updateRole(dataMap);
+        return ResultUtil.success(map);
+    }
 
+    @ApiOperation(value = "角色列表", notes = "角色列表 ")
+    @ApiImplicitParam(name = "params", value = "xxx", required = true, dataType = "Map")
+    @PostMapping("/getRolePermRel")
+    public ResultMsg getRolePermRel(@RequestBody Map<String, Object> params) {
+        Map<String,Object> queryMap = this.getParams(params);
+        Map<String,Object> map =new HashMap<String,Object>();
+        List<Map<String,Object>> list = roleService.getPermsByRoleId(queryMap);
+        map.put("list",list);
+        return ResultUtil.success(map);
+    }
+
+    @ApiOperation(value = "角色列表", notes = "角色列表 ")
+    @ApiImplicitParam(name = "params", value = "xxx", required = true, dataType = "Map")
+    @PostMapping("/updateRolePermissions")
+    public ResultMsg updateRolePermissions(@RequestBody Map<String, Object> params) {
+        Map<String,Object> dataMap = this.getParams(params);
+        Map<String,Object> map =new HashMap<String,Object>();
+        roleService.updateRolePermissions(dataMap);
+        return ResultUtil.success(map);
+    }
 
 }

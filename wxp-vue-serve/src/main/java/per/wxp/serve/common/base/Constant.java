@@ -11,6 +11,8 @@ public class Constant {
 
     public static final String SVC_CONT="SvcCont";
 
+    public static final String DATA_INFO="dataInfo";
+
     public static final String REQUEST_INFO="REQUEST_INFO";
 
     public static final String CLIENT_INFO="CLIENT_INFO";

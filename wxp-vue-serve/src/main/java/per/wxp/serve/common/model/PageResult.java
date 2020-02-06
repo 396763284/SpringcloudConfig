@@ -15,11 +15,11 @@ public class PageResult {
         this.list = list;
     }
 
-    public Integer getTotalCount() {
+    public Integer getTotal() {
         return total;
     }
 
-    public void setTotalCount(Integer total) {
+    public void setTotal(Integer total) {
         this.total = total;
     }
 

@@ -24,7 +24,7 @@ public class RoleServiceImpl implements RoleService {
         List<Map<String ,Object>> list= roleMapper.getRoleList(map);
         int total= roleMapper.getRoleTotal(map);
         page.setData(list);
-        page.setTotalCount(total);
+        page.setTotal(total);
         return page;
 
     }
@@ -32,17 +32,21 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public List<Map<String,Object>> getRoleList(Map<String, Object> map) {
 
+
+
         return roleMapper.getRoleList(map);
     }
 
     @Override
     public int insertRole(Map<String, Object> map) {
-        return 0;
+
+        return roleMapper.insertRole(map);
     }
 
     @Override
     public int updateRole(Map<String, Object> map) {
-        return 0;
+
+        return roleMapper.updateRole(map);
     }
 
     @Override
@@ -52,11 +56,21 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public int updateRolePermissions(Map<String, Object> map) {
+        roleMapper.delRolePermsRel(map);
+
+        roleMapper.insertRolePermsRel(map);
+
         return 0;
+
     }
 
     @Override
     public int insertRolePermissions(Map<String, Object> map) {
         return 0;
+    }
+
+    @Override
+    public List<Map<String, Object>> getPermsByRoleId(Map<String, Object> map) {
+        return roleMapper.getPermsByRoleId(map);
     }
 }

@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import per.wxp.serve.common.model.PageResult;
 import per.wxp.serve.sys.mapper.PermissionMapper;
 import per.wxp.serve.sys.mapper.RoleMapper;
 import per.wxp.serve.sys.service.PermissionService;
@@ -76,22 +77,36 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Override
     public List<Map<String, Object>> getPermissionList(Map<String, Object> map) {
-        return null;
+
+        return permissionMapper.getPermsList(map);
     }
 
     @Override
     public int insertPermission(Map<String, Object> map) {
+
         return 0;
     }
 
     @Override
     public int updatePermission(Map<String, Object> map) {
+
         return 0;
     }
 
     @Override
     public int freezePermission(Map<String, Object> map) {
+
         return 0;
+    }
+
+    @Override
+    public PageResult getPermsPage(Map<String, Object> map) {
+        PageResult page=new PageResult();
+        List<Map<String ,Object>> list= permissionMapper.getPermsList(map);
+        int total= permissionMapper.getPermsTotal(map);
+        page.setData(list);
+        page.setTotal(total);
+        return page;
     }
 
 

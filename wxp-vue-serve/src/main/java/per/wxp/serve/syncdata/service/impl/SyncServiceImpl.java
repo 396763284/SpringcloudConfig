@@ -28,7 +28,7 @@ public class SyncServiceImpl implements SyncService {
 
         PageResult result= new PageResult();
         result.setData(mapper.getSyncTasks(map));
-        result.setTotalCount(mapper.getSyncTasksTotal(map));
+        result.setTotal(mapper.getSyncTasksTotal(map));
         return result;
     }
 

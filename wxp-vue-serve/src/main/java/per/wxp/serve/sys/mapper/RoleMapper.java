@@ -22,4 +22,15 @@ public interface RoleMapper {
 
 
     int getRoleTotal(Map<String, Object> map);
+
+    int insertRole(Map<String, Object> map);
+
+    int updateRole(Map<String, Object> map);
+
+    List<Map<String,Object>> getPermsByRoleId(Map<String, Object> map);
+
+    int insertRolePermsRel(Map<String, Object> map);
+
+    int delRolePermsRel(Map<String, Object> map);
+
 }

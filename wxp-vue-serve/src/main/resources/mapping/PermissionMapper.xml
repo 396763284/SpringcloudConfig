@@ -22,7 +22,6 @@
           AND c.`ROLE_ID`= b.`ROLE_ID`
           AND d.`ROLE_ID`=b.`ROLE_ID`
           AND d.`USER_ID`=e.`user_id`
-
           <if test="user_code != null" >
           AND  e.`user_code`= #{user_code}
           </if>
@@ -54,8 +53,33 @@
         </if>
     </select>
 
+    <select id="getPermsList" resultType="Map" parameterType="Map">
+        SELECT
+        a.*
+        FROM sys_permission a
+        <where>
+            <if test="status != null and status != ''">
+                status= #{status}
+            </if>
+            <if test="title != null and title != ''">
+                title= '%'#{title}'%'
+            </if>
+        </where>
+    </select>
 
-
+    <select id="getPermsTotal" resultType="Int" parameterType="Map">
+        SELECT
+        count(permission_id)
+        FROM sys_permission a
+        <where>
+            <if test="status != null and status != ''">
+                status= #{status}
+            </if>
+            <if test="title != null and title != ''">
+                title= '%'#{title}'%'
+            </if>
+        </where>
+    </select>
 
 
 </mapper>

@@ -43,6 +43,7 @@ public class OAuth2ServerConfig {
                     .permitAll()
                     .antMatchers("/oauth/token").permitAll()
                     .anyRequest()
+
                     .authenticated();
             }
     }

@@ -61,4 +61,7 @@ public interface RoleService {
      */
     int insertRolePermissions(Map<String, Object> map);
 
+    List<Map<String,Object>> getPermsByRoleId(Map<String, Object> map);
+
+
 }

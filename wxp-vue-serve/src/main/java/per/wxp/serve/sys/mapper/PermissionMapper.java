@@ -17,4 +17,11 @@ public interface PermissionMapper {
 
     List<Map<String ,Object>> qryPermsByUser(Map<String ,Object> params);
 
+    List<Map<String,Object>> getPermsList(Map<String, Object> map);
+
+    int getPermsTotal(Map<String, Object> map);
+
+    int insertPerms(Map<String, Object> map);
+
+    int updatePerms(Map<String, Object> map);
 }
