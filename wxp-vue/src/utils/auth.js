@@ -21,6 +21,11 @@ export function removeToken() {
 }
 
 
+// 获取用户信息
+export function getUserInfo(){
+  return storage.getStorage("user_info")
+}
+
 // 保存角色下所有属性 -- 因为动态路由无法保存object每次刷新页面，需要重新生成 nav_tree
 export function setMenusInfo(menus){
   storage.setStorage("menus_info",menus)

@@ -1,5 +1,5 @@
 import { login, logout, getInfo } from '@/api/login'
-import { initData, setToken, removeToken } from '@/utils/auth'
+import { initData, setToken, removeToken,setUserInfo } from '@/utils/auth'
 
 const user = {
   state: {
@@ -53,7 +53,9 @@ const user = {
           user_code:state.user_code
         }
         getInfo(query).then(response => {
+          console.log(response)
           initData(response.data.perms_info)
+          setUserInfo(response.data.user_info)
           resolve(response)
         }).catch(error => {
           reject(error)

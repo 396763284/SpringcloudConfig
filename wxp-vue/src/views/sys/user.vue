@@ -4,7 +4,7 @@
         <el-form :inline="true" :model="query" class="query-form" size="mini">
             <el-form-item class="query-form-item">
                 <el-input v-model="query.username" placeholder="用户名"></el-input>
-            </el-form-item>
+            </el-form-item>test1
             <el-form-item class="query-form-item">
                 <el-select v-model="query.status" placeholder="状态">
                     <el-option label="全部" value=""></el-option>
