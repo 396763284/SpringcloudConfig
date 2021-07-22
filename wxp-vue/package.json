@@ -21,7 +21,7 @@
     "tinymce": "^4.9.7",
     "vuex": "^3.0.1",
     "el-tree-transfer": "^2.2.0",
-    "xlsx": "0.14.1"
+    "xlsx": "0.17.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0",
